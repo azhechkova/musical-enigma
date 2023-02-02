@@ -1,68 +1,76 @@
-export type NoteType = {
-  key: string;
-  note: string;
-  type: 'tone' | 'semitone';
-};
-
 export const noteList: NoteType[] = [
   {
     key: 'a',
-    note: 'C',
+    note: 'C4',
     type: 'tone',
   },
   {
     key: 'w',
-    note: 'C#',
+    note: 'C#4',
     type: 'semitone',
   },
   {
     key: 's',
-    note: 'D',
+    note: 'D4',
     type: 'tone',
   },
   {
     key: 'e',
-    note: 'D#',
+    note: 'D#4',
     type: 'semitone',
   },
   {
     key: 'd',
-    note: 'E',
+    note: 'E4',
     type: 'tone',
   },
   {
     key: 'f',
-    note: 'F',
+    note: 'F4',
     type: 'tone',
   },
   {
     key: 't',
-    note: 'F#',
+    note: 'F#4',
     type: 'semitone',
   },
   {
     key: 'g',
-    note: 'G',
+    note: 'G4',
     type: 'tone',
   },
   {
     key: 'y',
-    note: 'G#',
+    note: 'G#4',
     type: 'semitone',
   },
   {
     key: 'h',
-    note: 'A',
+    note: 'A4',
     type: 'tone',
   },
   {
     key: 'u',
-    note: 'A#',
+    note: 'A#4',
     type: 'semitone',
   },
   {
     key: 'j',
-    note: 'B',
+    note: 'B4',
+    type: 'tone',
+  },
+  {
+    key: 'k',
+    note: 'C5',
     type: 'tone',
   },
 ];
+
+const getKeysList = (notes: NoteType[]): KeysType =>
+  notes.reduce<KeysType>((prev, curr) => {
+    prev[curr.key] = curr;
+
+    return prev;
+  }, {});
+
+export const keysList = getKeysList(noteList) as KeysType;

@@ -1,16 +1,25 @@
 import React from 'react';
 import { BasicNote, BasicSemiNote } from './index.styles';
-import { NoteType } from '../../constants';
 
 interface NoteProps {
   note: NoteType;
+  playNote: (note: string) => void;
+  stopPlay: () => void;
 }
 
-const Note = ({ note }: NoteProps): JSX.Element => {
+const Note = ({ note, playNote, stopPlay }: NoteProps): JSX.Element => {
+  const onMouseDown = (): void => playNote(note.note);
+
+  const onMouseUp = (e: React.MouseEvent<HTMLButtonElement>): void => {
+    e.preventDefault();
+    e.stopPropagation();
+    stopPlay();
+  };
+
   return note.type === 'tone' ? (
-    <BasicNote>{note.note}</BasicNote>
+    <BasicNote onMouseDown={onMouseDown} onMouseUp={onMouseUp} />
   ) : (
-    <BasicSemiNote>{note.note}</BasicSemiNote>
+    <BasicSemiNote onMouseDown={onMouseDown} onMouseUp={onMouseUp} />
   );
 };
 
