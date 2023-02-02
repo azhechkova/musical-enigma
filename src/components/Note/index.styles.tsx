@@ -3,14 +3,13 @@ import styled from 'styled-components';
 export const BasicNote = styled.button`
   display: block;
   padding: 0;
-  background-color: white;
-  border-color: white;
+  border-color: var(--white-hover);
   cursor: pointer;
   height: 200px;
   width: 50px;
-  box-shadow: -1px 0 0 white inset, 0 0 5px hsl(0, 0%, 80%) inset, 0 0 3px black;
-  background: linear-gradient(to bottom, hsl(0, 0%, 93%) 0%, white 100%);
-  color: black;
+  box-shadow: -1px 0 0 var(--white-hover) inset, 0 0 5px hsl(0, 0%, 80%) inset,
+    0 0 3px var(--black);
+  background: linear-gradient(to bottom, hsl(0, 0%, 93%) 0%, var(--white) 100%);
 
   &:first-child {
     border-radius: 4px 0 4px 4px;
@@ -18,18 +17,30 @@ export const BasicNote = styled.button`
   &:last-child {
     border-radius: 0 4px 4px 4px;
   }
+  &:active {
+    border-top: 1px solid #777;
+    border-left: 1px solid #999;
+    border-bottom: 1px solid #999;
+    box-shadow: 2px 0 3px rgba(0, 0, 0, 0.1) inset,
+      -5px 5px 20px rgba(0, 0, 0, 0.2) inset, 0 0 3px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to bottom, var(--white) 0%, #e9e9e9 100%);
+  }
 `;
 
 export const BasicSemiNote = styled(BasicNote)`
-  background-color: black;
-  color: white;
   width: 2em;
   margin: 0 -1em;
   z-index: 10;
   position: relative;
   height: 100px;
-  box-shadow: -1px -1px 2px white inset, 0 -5px 2px 3px black inset,
-    0 2px 4px black;
+  box-shadow: -1px -1px 2px var(--black-hover) inset,
+    0 -5px 2px 3px var(--black) inset, 0 2px 4px var(--black-hover);
   background: linear-gradient(45deg, hsl(0, 0%, 13%) 0%, hsl(0, 0%, 33%) 100%);
-  color: white;
+
+  &:active {
+    box-shadow: -1px -1px 2px rgba(232, 237, 223, 0.2) inset,
+      0 -2px 2px 3px rgba(36, 36, 35, 0.6) inset,
+      0 1px 2px rgba(36, 36, 35, 0.5);
+    background: linear-gradient(to right, #444 0%, #222 100%);
+  }
 `;

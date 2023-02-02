@@ -17,9 +17,17 @@ const Note = ({ note, playNote, stopPlay }: NoteProps): JSX.Element => {
   };
 
   return note.type === 'tone' ? (
-    <BasicNote onMouseDown={onMouseDown} onMouseUp={onMouseUp} />
+    <BasicNote
+      onMouseLeave={onMouseUp}
+      onMouseDown={onMouseDown}
+      onMouseUp={onMouseUp}
+    />
   ) : (
-    <BasicSemiNote onMouseDown={onMouseDown} onMouseUp={onMouseUp} />
+    <BasicSemiNote
+      onMouseLeave={onMouseUp}
+      onMouseDown={onMouseDown}
+      onMouseUp={onMouseUp}
+    />
   );
 };
 
