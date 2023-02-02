@@ -1,9 +1,14 @@
 import React from 'react';
-import { Piano } from './components';
-import { noteList } from './constants';
+import { Home } from './components';
+import GlobalStyles from './styles';
 
 const App = (): JSX.Element => {
-  return <Piano notes={noteList} />;
+  return (
+    <>
+      <Home />
+      <GlobalStyles />
+    </>
+  );
 };
 
 export default App;

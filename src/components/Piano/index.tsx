@@ -32,25 +32,25 @@ const Piano = ({ notes }: PianoProps): JSX.Element => {
     [playNote],
   );
 
-  const stopPlays = useCallback((): void => {
+  const stopPlay = useCallback((): void => {
     synth.current?.triggerRelease(Tone.now());
   }, []);
 
   useEffect(() => {
     window.addEventListener('keydown', onKeyPress);
-    window.addEventListener('keyup', stopPlays);
+    window.addEventListener('keyup', stopPlay);
 
     return () => {
       window.removeEventListener('keydown', onKeyPress);
-      window.removeEventListener('keyup', stopPlays);
+      window.removeEventListener('keyup', stopPlay);
     };
-  }, [onKeyPress, stopPlays]);
+  }, [onKeyPress, stopPlay]);
 
   return (
     <BasicPiano>
       {notes.map(note => (
         <Note
-          stopPlay={stopPlays}
+          stopPlay={stopPlay}
           key={note.key}
           note={note}
           playNote={playNote}
