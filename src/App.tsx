@@ -1,11 +1,9 @@
 import React from 'react';
+import { Piano } from './components';
+import { noteList } from './constants';
 
 const App = (): JSX.Element => {
-  return (
-    <div className="App">
-      <header className="App-header" />
-    </div>
-  );
+  return <Piano notes={noteList} />;
 };
 
 export default App;
