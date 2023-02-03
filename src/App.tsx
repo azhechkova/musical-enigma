@@ -1,6 +1,6 @@
 import React from 'react';
 import { Home } from './components';
-import GlobalStyles from './styles';
+import GlobalStyles from './assets/styles';
 
 const App = (): JSX.Element => {
   return (
