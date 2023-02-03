@@ -7,8 +7,8 @@ import Fonts from './Fonts';
 const GlobalStyles = (): React.ReactElement => (
   <>
     <Reset />
-    <Variables />
     <Fonts />
+    <Variables />
   </>
 );
 

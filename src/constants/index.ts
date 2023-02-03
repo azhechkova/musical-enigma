@@ -109,8 +109,8 @@ export const noteList: NoteType[] = [
     type: 'semitone',
   },
   {
-    keyName: 'Enter',
-    key: 'Enter',
+    keyName: 'Backslash',
+    key: 'Backslash',
     note: 'G5',
     type: 'tone',
   },
