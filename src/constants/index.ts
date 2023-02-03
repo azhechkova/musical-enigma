@@ -1,13 +1,13 @@
 export const noteList: NoteType[] = [
   {
     key: 'KeyA',
-    keyName: 'A',
+    keyName: 'Do',
     note: 'C4',
     type: 'tone',
   },
   {
     key: 'KeyW',
-    keyName: 'W',
+    keyName: 'Do diez ',
     note: 'C#4',
     type: 'semitone',
   },
