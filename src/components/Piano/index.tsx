@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import * as Tone from 'tone';
 import BasicPiano from './index.styles';
@@ -8,13 +8,25 @@ import Note from '../Note';
 interface PianoProps {
   notes: NoteType[];
 }
+type PressedKeyType = Record<string, boolean>;
 
 const Piano = ({ notes }: PianoProps): JSX.Element => {
   const synth = useRef<Tone.Synth | null>(null);
+  const [pressedKeys, setPressedKeys] = useState<PressedKeyType>({});
 
   const setupSynth = (): void => {
     synth.current = new Tone.Synth().toDestination();
   };
+
+  useEffect(() => {
+    const formatKeys = notes?.reduce<PressedKeyType>((prev, next) => {
+      prev[next.key] = false;
+
+      return prev;
+    }, {});
+
+    setPressedKeys(formatKeys);
+  }, [notes]);
 
   const playNote = useCallback((note: string): void => {
     if (!synth.current) setupSynth();
@@ -23,28 +35,42 @@ const Piano = ({ notes }: PianoProps): JSX.Element => {
 
   const onKeyPress = useCallback(
     (e: KeyboardEvent): void => {
-      const note = keysList[e.key];
+      const note = keysList[e.code];
 
       if (note?.note) {
+        setPressedKeys({ ...pressedKeys, [e.code]: true });
         playNote(note.note);
       }
     },
-    [playNote],
+    [playNote, pressedKeys],
   );
 
   const stopPlay = useCallback((): void => {
     synth.current?.triggerRelease(Tone.now());
   }, []);
 
+  const onKeyUp = useCallback(
+    (e: KeyboardEvent): void => {
+      const note = keysList[e.code];
+
+      if (note?.note) {
+        setPressedKeys({ ...pressedKeys, [e.code]: false });
+
+        stopPlay();
+      }
+    },
+    [pressedKeys, stopPlay],
+  );
+
   useEffect(() => {
     window.addEventListener('keydown', onKeyPress);
-    window.addEventListener('keyup', stopPlay);
+    window.addEventListener('keyup', onKeyUp);
 
     return () => {
       window.removeEventListener('keydown', onKeyPress);
-      window.removeEventListener('keyup', stopPlay);
+      window.removeEventListener('keyup', onKeyUp);
     };
-  }, [onKeyPress, stopPlay]);
+  }, [onKeyPress, onKeyUp]);
 
   return (
     <BasicPiano>
@@ -52,7 +78,7 @@ const Piano = ({ notes }: PianoProps): JSX.Element => {
         <Note
           stopPlay={stopPlay}
           key={note.key}
-          note={note}
+          note={{ ...note, isPressed: pressedKeys[note.key] }}
           playNote={playNote}
         />
       ))}

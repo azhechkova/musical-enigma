@@ -3,8 +3,7 @@
     "browser": true,
     "es6": true,
     "es2022": true,
-    "jest": true,
-    "node": true
+    "jest": true
   },
   "extends": [
     "airbnb",
@@ -25,7 +24,7 @@
     },
     "ecmaVersion": "latest",
     "sourceType": "module",
-    "project": "./packages/**/tsconfig.json"
+    "project": "./tsconfig.json"
   },
   "plugins": [
     "import",
@@ -111,8 +110,7 @@
         "extensions": [".js", ".jsx", ".ts", ".tsx"],
         "paths": ["."],
         "project": [
-          "packages/client/tsconfig.json",
-          "packages/server/tsconfig.json"
+          "./tsconfig.json"
         ]
       },
       "typescript": {

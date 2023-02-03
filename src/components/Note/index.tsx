@@ -1,8 +1,12 @@
 import React from 'react';
 import { BasicNote, BasicSemiNote } from './index.styles';
 
+interface NotePress extends NoteType {
+  isPressed: boolean;
+}
+
 interface NoteProps {
-  note: NoteType;
+  note: NotePress;
   playNote: (note: string) => void;
   stopPlay: () => void;
 }
@@ -21,12 +25,14 @@ const Note = ({ note, playNote, stopPlay }: NoteProps): JSX.Element => {
       onMouseLeave={onMouseUp}
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
+      isPressed={note.isPressed}
     />
   ) : (
     <BasicSemiNote
       onMouseLeave={onMouseUp}
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
+      isPressed={note.isPressed}
     />
   );
 };
