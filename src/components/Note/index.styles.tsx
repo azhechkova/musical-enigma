@@ -2,7 +2,7 @@ import { HTMLAttributes } from 'react';
 import styled from 'styled-components';
 
 interface BasicNoteProps extends HTMLAttributes<HTMLButtonElement> {
-  isPressed: boolean;
+  isPressed?: boolean;
 }
 
 export const BasicNote = styled.button<BasicNoteProps>(({ isPressed }) => [

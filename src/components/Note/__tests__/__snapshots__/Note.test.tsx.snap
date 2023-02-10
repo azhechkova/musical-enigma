@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Note render white button properly 1`] = `
+<div>
+  <button
+    class="sc-bcXHqe kVgTcs"
+    title="C4"
+    type="button"
+  />
+</div>
+`;
+
+exports[`Note renders black button properly 1`] = `
+<div>
+  <button
+    class="sc-bcXHqe kVgTcs"
+    title="C4"
+    type="button"
+  />
+</div>
+`;
