@@ -29,7 +29,7 @@ const Info = (): JSX.Element => {
           <BasicInfoList>
             {noteList.map(note => (
               <li key={note.key}>
-                Key {note.keyName}: {note.note}
+                Key {note.keyName}: {note.name}
               </li>
             ))}
           </BasicInfoList>
