@@ -5,7 +5,7 @@ declare module '*.woff2';
 type NoteType = {
   key: string;
   keyName?: string;
-  note: string;
+  name: string;
   type: 'tone' | 'semitone';
 };
 
