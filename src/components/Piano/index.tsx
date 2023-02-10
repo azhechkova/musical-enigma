@@ -37,9 +37,9 @@ const Piano = ({ notes }: PianoProps): JSX.Element => {
     (e: KeyboardEvent): void => {
       const note = keysList[e.code];
 
-      if (note?.note) {
+      if (note?.name) {
         setPressedKeys({ ...pressedKeys, [e.code]: true });
-        playNote(note.note);
+        playNote(note.name);
       }
     },
     [playNote, pressedKeys],
@@ -53,7 +53,7 @@ const Piano = ({ notes }: PianoProps): JSX.Element => {
     (e: KeyboardEvent): void => {
       const note = keysList[e.code];
 
-      if (note?.note) {
+      if (note?.name) {
         setPressedKeys({ ...pressedKeys, [e.code]: false });
 
         stopPlay();
